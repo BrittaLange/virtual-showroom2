@@ -13,7 +13,7 @@ public class DreamcarListPage extends BasePage {
 	WebDriver driver;
 	String url;
 	
-	By asCustomerBtn = By.cssSelector("#login_as_customer .mat-button-wrapper");
+	By newCarBtn = By.cssSelector("#button_new_car .mat-button-wrapper");
 	
 
 
@@ -25,6 +25,10 @@ public class DreamcarListPage extends BasePage {
 	public String getCurrentUrl() {
 		System.out.println(driver.getCurrentUrl());
 		return driver.getCurrentUrl();
+	}
+	
+	public WebElement getNewCarBtn() {
+		return driver.findElement(newCarBtn);
 	}
 
 }
