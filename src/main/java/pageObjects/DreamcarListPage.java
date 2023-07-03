@@ -10,13 +10,9 @@ import base.BasePage;
 
 public class DreamcarListPage extends BasePage {
 
-	WebDriver driver;
-	String url;
+	private WebDriver driver;
+	private By newCarBtn = By.cssSelector("#button_new_car .mat-button-wrapper");
 	
-	By newCarBtn = By.cssSelector("#button_new_car .mat-button-wrapper");
-	
-
-
 	public DreamcarListPage() throws IOException {
 		super();
 		this.driver = getDriver();
