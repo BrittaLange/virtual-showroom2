@@ -10,9 +10,10 @@ import base.BasePage;
 
 public class LoginPage extends BasePage {
 
-	WebDriver driver;
+	private WebDriver driver;
 
-	By asCustomerBtn = By.cssSelector("#login_as_customer .mat-button-wrapper");
+	private By asCustomerBtn = By.cssSelector("#login_as_customer .mat-button-wrapper");
+	private By asVendorBtn = By.cssSelector("#login_as_vendor .mat-button-wrapper");
 
 	public LoginPage() throws IOException {
 		super();
@@ -21,6 +22,9 @@ public class LoginPage extends BasePage {
 
 	public WebElement getAsCustomerBtn() {
 		return driver.findElement(asCustomerBtn);
+	}
+	public WebElement getAsVendorBtn() {
+		return driver.findElement(asVendorBtn);
 	}
 
 }
