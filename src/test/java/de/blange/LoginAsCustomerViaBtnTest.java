@@ -16,7 +16,7 @@ import pageObjects.LoginPage;
 
 @Listeners(resources.Listeners.class)
 /**
- * Test refers to requirement TB4-T1
+ * TestCaseID cloud01-eu.testbench.com/TB4-T1
  *
  * @author Britta
  *
