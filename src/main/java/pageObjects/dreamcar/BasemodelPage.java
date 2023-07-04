@@ -1,4 +1,4 @@
-package pageObjects;
+package pageObjects.dreamcar;
 
 import java.io.IOException;
 
@@ -8,12 +8,12 @@ import org.openqa.selenium.WebElement;
 
 import base.BasePage;
 
-public class DreamcarListPage extends BasePage {
+public class BasemodelPage extends BasePage {
 
 	private WebDriver driver;
 	private By newCarBtn = By.cssSelector("#button_new_car .mat-button-wrapper");
 	
-	public DreamcarListPage() throws IOException {
+	public BasemodelPage() throws IOException {
 		super();
 		this.driver = getDriver();
 	}

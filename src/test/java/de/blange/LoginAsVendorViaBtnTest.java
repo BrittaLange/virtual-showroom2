@@ -11,8 +11,8 @@ import org.testng.annotations.Test;
 
 import base.ExtentManager;
 import base.Hooks;
-import pageObjects.FactbookPage;
 import pageObjects.LoginPage;
+import pageObjects.factbook.CustomerListPage;
 
 @Listeners(resources.Listeners.class)
 /**
@@ -34,7 +34,7 @@ public class LoginAsVendorViaBtnTest extends Hooks {
 		LoginPage loginPage = new LoginPage();
 		loginPage.getAsVendorBtn().click();
 		
-		FactbookPage factbook = new FactbookPage();
+		CustomerListPage factbook = new CustomerListPage();
 		WebDriverWait wait1 = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 		wait1.until(ExpectedConditions.visibilityOf(factbook.getAddCustomerBtn()));
 

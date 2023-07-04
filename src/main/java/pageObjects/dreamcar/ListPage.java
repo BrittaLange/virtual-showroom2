@@ -1,4 +1,4 @@
-package pageObjects;
+package pageObjects.dreamcar;
 
 import java.io.IOException;
 
@@ -8,14 +8,12 @@ import org.openqa.selenium.WebElement;
 
 import base.BasePage;
 
-public class FactbookPage extends BasePage {
+public class ListPage extends BasePage {
 
 	private WebDriver driver;
-	private By addCustomerBtn = By.cssSelector("mat-grid-tile#add_customer > .mat-grid-tile-content");
+	private By newCarBtn = By.cssSelector("#button_new_car .mat-button-wrapper");
 	
-
-
-	public FactbookPage() throws IOException {
+	public ListPage() throws IOException {
 		super();
 		this.driver = getDriver();
 	}
@@ -25,8 +23,8 @@ public class FactbookPage extends BasePage {
 		return driver.getCurrentUrl();
 	}
 	
-	public WebElement getAddCustomerBtn() {
-		return driver.findElement(addCustomerBtn);
+	public WebElement getNewCarBtn() {
+		return driver.findElement(newCarBtn);
 	}
 
 }

@@ -11,8 +11,8 @@ import org.testng.annotations.Test;
 
 import base.ExtentManager;
 import base.Hooks;
-import pageObjects.DreamcarListPage;
 import pageObjects.LoginPage;
+import pageObjects.dreamcar.ListPage;
 
 @Listeners(resources.Listeners.class)
 /**
@@ -33,7 +33,7 @@ public class LoginAsCustomerViaBtnTest extends Hooks {
 		LoginPage loginPage = new LoginPage();
 		loginPage.getAsCustomerBtn().click();
 		
-		DreamcarListPage dreamcar = new DreamcarListPage();
+		ListPage dreamcar = new ListPage();
 		WebDriverWait wait1 = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 		wait1.until(ExpectedConditions.visibilityOf(dreamcar.getNewCarBtn()));
 
