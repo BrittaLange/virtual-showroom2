@@ -8,10 +8,10 @@ import org.openqa.selenium.WebElement;
 
 import base.BasePage;
 
-public class BasemodelPage extends BasePage {
+public class BasemodelPage extends NavigationTabs {
 
 	private WebDriver driver;
-	private By newCarBtn = By.cssSelector("#button_new_car .mat-button-wrapper");
+	private By basemodelOption = By.id("#select_basemodel");
 	
 	public BasemodelPage() throws IOException {
 		super();
@@ -19,12 +19,11 @@ public class BasemodelPage extends BasePage {
 	}
 
 	public String getCurrentUrl() {
-		System.out.println(driver.getCurrentUrl());
 		return driver.getCurrentUrl();
 	}
 	
-	public WebElement getNewCarBtn() {
-		return driver.findElement(newCarBtn);
+	public WebElement getBasemodelOption() {
+		return driver.findElement(basemodelOption);
 	}
 
 }
