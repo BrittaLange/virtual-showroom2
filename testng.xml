@@ -16,7 +16,5 @@
 			<class name="de.testbench.BasicPriceForModel1Test" />
 		</classes>
 	</test>
-</suite> <!--
-Suite -->
-
+</suite> 
 <!--suite name="Suite" parallel="tests" thread-count="2"-->
