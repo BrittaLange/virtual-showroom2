@@ -16,11 +16,10 @@ import pageObjects.dreamcar.BasemodelPage;
 import pageObjects.dreamcar.InsurancePage;
 import pageObjects.dreamcar.ListPage;
 import pageObjects.dreamcar.SummaryPage;
-import pageObjects.factbook.CustomerListPage;
 
 @Listeners(resources.Listeners.class)
 /**
- * TestCaseID cloud01-eu.testbench.com/TB4-T2
+ * TestCaseID cloud01-eu.testbench.com/TB4-T12
  *
  * @author Britta
  *
