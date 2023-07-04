@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import base.BasePage;
 
-public class ListPage extends BasePage {
+public class ListPage extends NavigationTabs {
 
 	private WebDriver driver;
 	private By newCarBtn = By.cssSelector("#button_new_car .mat-button-wrapper");

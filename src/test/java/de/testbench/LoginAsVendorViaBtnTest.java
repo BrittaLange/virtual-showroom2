@@ -1,4 +1,4 @@
-package de.blange;
+package de.testbench;
 
 import java.io.IOException;
 import java.time.Duration;
