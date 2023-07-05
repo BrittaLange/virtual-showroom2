@@ -13,15 +13,12 @@ public class CustomerListPage extends BasePage {
 	private WebDriver driver;
 	private By addCustomerBtn = By.cssSelector("mat-grid-tile#add_customer > .mat-grid-tile-content");
 	
-
-
 	public CustomerListPage() throws IOException {
 		super();
 		this.driver = getDriver();
 	}
 
 	public String getCurrentUrl() {
-		System.out.println(driver.getCurrentUrl());
 		return driver.getCurrentUrl();
 	}
 	

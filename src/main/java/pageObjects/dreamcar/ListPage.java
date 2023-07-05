@@ -19,7 +19,6 @@ public class ListPage extends NavigationTabs {
 	}
 
 	public String getCurrentUrl() {
-		System.out.println(driver.getCurrentUrl());
 		return driver.getCurrentUrl();
 	}
 	
