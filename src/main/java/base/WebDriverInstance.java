@@ -13,24 +13,29 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Diese Klasse ist für die Initialisierung des Webdrivers verantwortlich.
  * Die Ausführung von parallelen Tests ist möglich durch die Verwendung von ThreadLocal.
- * Für jeden WebDriver wird ein Thread gestartet.
+ * Für jeden Thread wird ein eigener Webdriver erzeugt.
  * 
  * @author Britta
  *
  */
 public class WebDriverInstance {
 
-	public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+	/**
+	 * Das WebDriver-Attribut als thread-lokales Attribut.
+	 */
+	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+	
 	/**
 	 * Wenn dem Thread noch keine Webdriver-Instanz zugewiesen bekommen wurde,
-	 * wird eine neue Instanz nur für diesen Thread erzeugt.
-	 * @return der Webdriver für den zugehörigen Thread.
+	 * wird eine neue Instanz nur für diesen Thread erzeugt und zurückgegeben.
+	 * Existiert schon eine Instanz des Webdrivers, wird eben diese zurückgegeben.
+	 * 
+	 * @return der Webdriver des zugehörigen Threads.
 	 */
 	public static WebDriver getDriver() {
 		// Hat der Thread noch keinen WebDriver, dann wird der Kopie des Thread-lokalen WebDrivers des aktuellen 
 		// Threads der neu erzeugte WebDriver zugewiesen.
 		if(driver.get() == null) {
-			System.out.println("Kein WebDriver in diesem Thread!");
 			try {
 				driver.set(createDriver());
 			} catch (IOException e) {
@@ -40,8 +45,14 @@ public class WebDriverInstance {
 		return driver.get();
 	}
 	
-	public static WebDriver createDriver() throws IOException {
-		System.out.println("New driver created!");
+	/**
+	 * Hier wird eine Instanz des WebDrivers erzeugt und zwar abhängig des abngegebenen Werts für den Browser in der config.properties-Datei.
+	 * Möglich sind Instanzen für folgenden Browser: Chrome, Edge und Firefox.
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
+	private static WebDriver createDriver() throws IOException {
 		WebDriver webdriver = null;
 		
 		// System.getProperty("user.dir") zeigt auf das oberste Verzeichnis dieses Projekts, also auf "liveproject1".
@@ -68,7 +79,9 @@ public class WebDriverInstance {
 		
 		return webdriver;
 	}
-	
+	/**
+	 * Schließen des Webdrivers einschließlich aller assozierten Browser-Fenster.
+	 */
 	public static void cleanupDriver() {
 		driver.get().quit();
 		driver.remove();
