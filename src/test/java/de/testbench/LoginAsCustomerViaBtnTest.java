@@ -29,7 +29,7 @@ public class LoginAsCustomerViaBtnTest extends Hooks {
 
 	@Test
 	public void loginAsCustomerViaBtn() throws IOException {
-		ExtentManager.log("Starting LoginAsCustomerViaBtnTest ...");
+		ExtentManager.log("Starting " + this.getClass().getName());
 		LoginPage loginPage = new LoginPage();
 		loginPage.getAsCustomerBtn().click();
 		

@@ -32,8 +32,7 @@ public class BasicPriceForModel1Test extends Hooks {
 
 	@Test
 	public void basicPriceForModel1() throws IOException {
-		System.out.println(this.getClass());
-		ExtentManager.log("Starting BasicPriceForModel1Test ...");
+		ExtentManager.log("Starting " + this.getClass().getName());
 		LoginPage loginPage = new LoginPage();
 		loginPage.getAsCustomerBtn().click();
 		ExtentManager.pass("Logged in as customer.");

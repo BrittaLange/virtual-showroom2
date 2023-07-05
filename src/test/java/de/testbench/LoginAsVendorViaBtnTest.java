@@ -29,8 +29,7 @@ public class LoginAsVendorViaBtnTest extends Hooks {
 
 	@Test
 	public void loginAsVendorViaBtn() throws IOException {
-		System.out.println(this.getClass());
-		ExtentManager.log("Starting LoginAsVendorViaBtnTest ...");
+		ExtentManager.log("Starting " + this.getClass().getName());
 		LoginPage loginPage = new LoginPage();
 		loginPage.getAsVendorBtn().click();
 		
