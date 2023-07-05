@@ -9,6 +9,16 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
+/**
+ * Hier wird ein ExtentReport für jeden einzelnen Thread erzeugt.
+ * Es werden synchronisierte Methoden zum Anfügen von Log-Nachrichten 
+ * und von Screenshots zur Nutzung in den Testklassen zur Verfügung gestellt.
+ * In der Klasse Listener werden die Methoden zum Erzeugen des Reports und
+ * der Tests und zum Anhängen von Screenshots verwendet. 
+ * 
+ * @author Britta
+ *
+ */
 public class ExtentManager extends BasePage {
 
 	private static ExtentReports extentReport;
@@ -31,6 +41,7 @@ public class ExtentManager extends BasePage {
 
 	/**
 	 * Der Name des Extent Reports wird aus dem Namen des Projekts erzeugt.
+	 * 
 	 * @return gibt einen ExtentRport zurück, wenn noch keiner existiert.
 	 */
 	public static ExtentReports getReport() {
@@ -40,16 +51,24 @@ public class ExtentManager extends BasePage {
 			int indexOfSlash = projectName.indexOf("\\");
 			String name = projectName.substring(0, indexOfSlash);
 			name = new StringBuffer(name).reverse().toString();
-			System.out.println(name);
 			setupExtentReport(name);
 		}
 		return extentReport;
 	}
 
-	private static ExtentReports setupExtentReport(String testName) {
+	/**
+	 * Hier werden Informationen zum Report wie der Reportname, der Titel der HTML-Seite und 
+	 * der Name des Testers festgelegt. Es können noch weitere Informationen mit setSystemInfo()
+	 * hinzugefügt werden.
+	 * Außerdem wird hier das Theme des Reports gesetzt.
+	 * 
+	 * @param testName der Name des Testprojekts.
+	 * @return gibt eine konfigurierte Instanz des ExtentReports zurück.
+	 */
+	private static ExtentReports setupExtentReport(String projectName) {
 		extentReport = new ExtentReports();
 		ExtentSparkReporter spark = new ExtentSparkReporter(
-				System.getProperty("user.dir") + "/report/" + extentReportsPrefix_Name(testName) + ".html");
+				System.getProperty("user.dir") + "/report/" + extentReportsPrefix_Name(projectName) + ".html");
 		extentReport.attachReporter(spark);
 		extentReport.setSystemInfo("Tester", "Tester Name");
 
@@ -60,9 +79,9 @@ public class ExtentManager extends BasePage {
 		return extentReport;
 	}
 
-	private static String extentReportsPrefix_Name(String testName) {
+	private static String extentReportsPrefix_Name(String projectName) {
 		String date = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
-		extentReportPrefix = date + "_" + testName;
+		extentReportPrefix = date + "_" + projectName;
 		return extentReportPrefix;
 	}
 
