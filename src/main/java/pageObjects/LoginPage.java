@@ -14,6 +14,9 @@ public class LoginPage extends BasePage {
 
 	private By asCustomerBtn = By.cssSelector("#login_as_customer .mat-button-wrapper");
 	private By asVendorBtn = By.cssSelector("#login_as_vendor .mat-button-wrapper");
+	private By username = By.id("input_username");
+	private By password = By.id("input_password");
+	private By submitBtn = By.id("button_login");
 
 	public LoginPage() throws IOException {
 		super();
@@ -23,8 +26,20 @@ public class LoginPage extends BasePage {
 	public WebElement getAsCustomerBtn() {
 		return driver.findElement(asCustomerBtn);
 	}
+	
 	public WebElement getAsVendorBtn() {
 		return driver.findElement(asVendorBtn);
 	}
-
+	
+	public WebElement getUsername() {
+		return driver.findElement(username);
+	}
+	
+	public WebElement getPassword() {
+		return driver.findElement(password);
+	}
+	
+	public WebElement getSubmitBtn() {
+		return driver.findElement(submitBtn);
+	}
 }
