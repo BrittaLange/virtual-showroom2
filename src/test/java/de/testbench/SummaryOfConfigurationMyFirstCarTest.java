@@ -8,12 +8,13 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import base.ExtentManager;
 import base.Hooks;
+
 import pageObjects.LoginPage;
 import pageObjects.dreamcar.BasemodelPage;
 import pageObjects.dreamcar.ColorPage;
@@ -62,19 +63,28 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		js.executeScript("arguments[0].scrollIntoView();", basemodel.getOption10());
 		basemodel.getOption10().click();
+		String expectedOption = "Model 10 (Rolo XL)";
+		String expectedModelPrice = "24.999,00 €";
+		Assert.assertEquals(basemodel.getBasemodelItem().getText(), expectedOption, "Not the expected base model: ");
 		ExtentManager.pass("Selected base model 10.");
+		Assert.assertEquals(basemodel.getPriceLabel().getText().trim(), expectedModelPrice, "Not the expected price: ");
+		ExtentManager.pass("Correct price for the selected base model.");
 		basemodel.getEngineNavBtn().click();
 
+		
 		EnginePage engine = new EnginePage();
 		wait1.until(ExpectedConditions.visibilityOf(engine.getEngineItem()));
 		engine.getEngineCombobox().click();
 		engine.getOption4().click();
+		String expectedEngine ="ECOtech with Hybrid";
+		String expectedEnginePrice = "4.999,00 €";
+		Assert.assertEquals(engine.getEngineItem().getText(), expectedEngine, "Not the expected engine: ");
 		ExtentManager.pass("Selected engine ECOtech with hybrid.");
+		// TODO Proceed to write assertions.
 		engine.getPackageNavBtn().click();
 
 		PackagePage pack = new PackagePage();
 		wait1.until(ExpectedConditions.textToBePresentInElement(pack.getPriceOfNone(), "0,00 €"));
-		System.out.println(pack.getSportPackageRadioBtn().isDisplayed());
 		js.executeScript("arguments[0].click()", pack.getSportPackageRadioBtn());
 //		pack.getSportPackageRadioBtn().click();
 		ExtentManager.pass("Selected Sport Package OutRun");
@@ -115,9 +125,7 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 		wait1.until(ExpectedConditions.elementToBeClickable(dreamcar.getNewCarBtn()));
 		List<WebElement> cars = dreamcar.getsavedCars();
 		for (int i = 0; i < cars.size(); i++) {
-			System.out.println("Schleife");
 			if (cars.get(i).getText().equals("MyFirstCar")) {
-				System.out.println("Firstcar gefunden");
 				// delete WebElement mit id=button_delete_i
 				dreamcar.deleteMyfirstcar(i).click();
 
