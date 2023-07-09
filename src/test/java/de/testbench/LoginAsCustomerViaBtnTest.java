@@ -32,13 +32,15 @@ public class LoginAsCustomerViaBtnTest extends Hooks {
 		ExtentManager.log("Starting " + this.getClass().getName());
 		LoginPage loginPage = new LoginPage();
 		loginPage.getAsCustomerBtn().click();
+		ExtentManager.pass("Clicked As Customer button");
 		
 		ListPage dreamcar = new ListPage();
 		WebDriverWait wait1 = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-		wait1.until(ExpectedConditions.visibilityOf(dreamcar.getNewCarBtn()));
+		wait1.until(ExpectedConditions.elementToBeClickable(dreamcar.getNewCarBtn()));
 
 		String expectedUrl = "https://vsr.testbench.com/dreamcar/list";
 		Assert.assertEquals(dreamcar.getCurrentUrl(), expectedUrl, "Not the expected URL.");
 		ExtentManager.pass("The expected start page of the subsystem DreamCar is displayed (Tabcard List)");
 	}
+
 }
