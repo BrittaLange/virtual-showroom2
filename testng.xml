@@ -16,5 +16,10 @@
 			<class name="de.testbench.BasicPriceForModel1Test" />
 		</classes>
 	</test>
+		<test thread-count="5" name="Subsystem Dreamcar">
+		<classes>
+			<class name="de.testbench.SummaryOfConfigurationMyFirstCarTest" />
+		</classes>
+	</test>
 </suite> 
 <!--suite name="Suite" parallel="tests" thread-count="2"-->
