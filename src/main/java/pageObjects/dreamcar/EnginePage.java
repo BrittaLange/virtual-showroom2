@@ -12,6 +12,7 @@ public class EnginePage extends NavigationTabs {
 	private By engineCombobox = By.cssSelector("mat-select#select_engine");
 	private By engineItem = By.id("mat-select-value-3");
 	private By option4 = By.id("option_engine_4");
+	private By enginePriceLabel = By.id("label_price_component");
 	
 	public EnginePage() throws IOException {
 		super();
@@ -32,6 +33,10 @@ public class EnginePage extends NavigationTabs {
 	
 	public WebElement getOption4() {
 		return driver.findElement(option4);
+	}
+	
+	public WebElement getEnginePriceLabel() {
+		return driver.findElement(enginePriceLabel);
 	}
 
 	
