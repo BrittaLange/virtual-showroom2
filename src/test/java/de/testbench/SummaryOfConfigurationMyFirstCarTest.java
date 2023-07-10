@@ -66,30 +66,38 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 		String expectedOption = "Model 10 (Rolo XL)";
 		String expectedModelPrice = "24.999,00 €";
 		Assert.assertEquals(basemodel.getBasemodelItem().getText(), expectedOption, "Not the expected base model: ");
-		ExtentManager.pass("Selected base model 10.");
+		ExtentManager.pass("Selected base model: " + basemodel.getBasemodelItem().getText());
 		Assert.assertEquals(basemodel.getPriceLabel().getText().trim(), expectedModelPrice, "Not the expected price: ");
-		ExtentManager.pass("Correct price for the selected base model.");
+		ExtentManager.pass("Correct price for the selected base model: " + basemodel.getPriceLabel().getText().trim());
 		basemodel.getEngineNavBtn().click();
 
-		
 		EnginePage engine = new EnginePage();
 		wait1.until(ExpectedConditions.visibilityOf(engine.getEngineItem()));
 		engine.getEngineCombobox().click();
 		engine.getOption4().click();
-		String expectedEngine ="ECOtech with Hybrid";
+		String expectedEngine = "ECOtech with Hybrid";
 		String expectedEnginePrice = "4.999,00 €";
 		Assert.assertEquals(engine.getEngineItem().getText(), expectedEngine, "Not the expected engine: ");
-		ExtentManager.pass("Selected engine ECOtech with hybrid.");
-		// TODO Proceed to write assertions.
+		ExtentManager.pass("Selected engine is : " + engine.getEngineItem().getText());
+		Assert.assertEquals(engine.getEnginePriceLabel().getText(), expectedEnginePrice,
+				"Not the expected price of engine: ");
+		ExtentManager.pass("Correct price for engine is displayed: " + engine.getEnginePriceLabel().getText());
 		engine.getPackageNavBtn().click();
-
+		
 		PackagePage pack = new PackagePage();
 		wait1.until(ExpectedConditions.textToBePresentInElement(pack.getPriceOfNone(), "0,00 €"));
 		js.executeScript("arguments[0].click()", pack.getSportPackageRadioBtn());
 //		pack.getSportPackageRadioBtn().click();
-		ExtentManager.pass("Selected Sport Package OutRun");
+		String expectedPackagePrice = "2.999,99 €";
+		String expectedPackage = "Sport Package \"OutRun\"";
+		Assert.assertEquals(pack.getSportPackageRadioBtn().isSelected(), true, "Not the expected option selected: ");
+		ExtentManager.pass("Sport Package is selected: " + pack.getSportPackageRadioBtn().isSelected());
+		Assert.assertEquals(pack.getSportPackageLabel().getText().trim(), expectedPackage, "Not the expected package: ");
+		ExtentManager.pass("The selected package is: " + pack.getSportPackageLabel().getText());
+		Assert.assertEquals(pack.getPriceOfSportPackage().getText(), expectedPackagePrice, "Not the expected price: ");
+		ExtentManager.pass("Correct price for sport package is displayed: " + pack.getPriceOfSportPackage().getText());
 		pack.getExtrasNavBtn().click();
-
+		// TODO Proceed to write assertions.
 		ExtrasPage extras = new ExtrasPage();
 		wait1.until(ExpectedConditions.textToBePresentInElement(extras.getPriceWinterTires(), "210,00 €"));
 		js.executeScript("arguments[0].click()", extras.getAutopilot());
