@@ -1,5 +1,7 @@
 package base;
 
+import com.paulhammant.ngwebdriver.NgWebDriver;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
@@ -9,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.JavascriptExecutor;
 
 /**
  * Diese Klasse ist für die Initialisierung des Webdrivers verantwortlich.
@@ -72,9 +75,11 @@ public class WebDriverInstance {
 		} else {
 			System.out.println("Driver not found.");
 		}
-		
+		// https://github.com/paul-hammant/ngWebDriver
+		JavascriptExecutor jsDriver = (JavascriptExecutor) webdriver;
+		NgWebDriver ngDriver = new NgWebDriver(jsDriver);
+		ngDriver.waitForAngularRequestsToFinish();
 		webdriver.manage().window().maximize();
-		// TODO Do not mix up implicit and explicit waits.
 		webdriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		return webdriver;
