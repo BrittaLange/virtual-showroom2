@@ -97,7 +97,7 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 		Assert.assertEquals(pack.getPriceOfSportPackage().getText(), expectedPackagePrice, "Not the expected price: ");
 		ExtentManager.pass("Correct price for sport package is displayed: " + pack.getPriceOfSportPackage().getText());
 		pack.getExtrasNavBtn().click();
-		// TODO Proceed to write assertions.
+		
 		ExtrasPage extras = new ExtrasPage();
 		wait1.until(ExpectedConditions.textToBePresentInElement(extras.getPriceWinterTires(), "210,00 €"));
 		js.executeScript("arguments[0].click()", extras.getAutopilot());
@@ -105,10 +105,41 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 		js.executeScript("arguments[0].click()", extras.getNavigationsystem());
 		js.executeScript("arguments[0].click()", extras.getSoundsystem());
 		js.executeScript("arguments[0].click()", extras.getWintertires());
+		String expectedAutopilotPrice ="2.900,00 €";
+		String expectedFloormatsPrice ="46,00 €";
+		String expectedNavigationsystemPrice ="1.490,00 €";
+		String expectedSoundsystemPrice ="470,00 €";
+		String expectedWintertiresPrice ="210,00 €";
+		Assert.assertEquals(extras.getAutopilot().isSelected(), true, "Checkbox is not selected: ");
+		ExtentManager.pass("Checkbox is selected: " + extras.getAutopilotLabel().getText());
+		Assert.assertEquals(extras.getPriceAutopilot().getText().trim(), expectedAutopilotPrice, "Not the expected price: ");
+		ExtentManager.pass("Correct price is displayed: " + extras.getPriceAutopilot().getText());
+		
+		Assert.assertEquals(extras.getFloormats().isSelected(), true, "Checkbox is not selected: ");
+		ExtentManager.pass("Checkbox is selected: " + extras.getFloormatsLabel().getText());
+		Assert.assertEquals(extras.getPriceFloormats().getText().trim(), expectedFloormatsPrice, "Not the expected price: ");
+		ExtentManager.pass("Correct price is displayed: " + extras.getPriceFloormats().getText());
+		
+		Assert.assertEquals(extras.getNavigationsystem().isSelected(), true, "Checkbox is not selected: ");
+		ExtentManager.pass("Checkbox is selected: " + extras.getNavigationsystemLabel().getText());
+		Assert.assertEquals(extras.getPriceNavigationsystem().getText().trim(), expectedNavigationsystemPrice, "Not the expected price: ");
+		ExtentManager.pass("Correct price is displayed: " + extras.getPriceNavigationsystem().getText());
+		
+		Assert.assertEquals(extras.getSoundsystem().isSelected(), true, "Checkbox is not selected: ");
+		ExtentManager.pass("Checkbox is selected: " + extras.getSoundsystemLabel().getText());
+		Assert.assertEquals(extras.getPriceSoundsystem().getText().trim(), expectedSoundsystemPrice, "Not the expected price: ");
+		ExtentManager.pass("Correct price is displayed: " + extras.getPriceSoundsystem().getText());
+		
+		Assert.assertEquals(extras.getWintertires().isSelected(), true, "Checkbox is not selected: ");
+		ExtentManager.pass("Checkbox is selected: " + extras.getWintertiresLabel().getText());
+		Assert.assertEquals(extras.getPriceWinterTires().getText().trim(), expectedWintertiresPrice, "Not the expected price: ");
+		ExtentManager.pass("Correct price is displayed: " + extras.getPriceWinterTires().getText());
 		ExtentManager.pass(
 				"Selected all possible extras via the checkboxes: Autopilot Don'tCare, Floor mats, Navigation System, Sound System OverDrive and Winter tires");
 		extras.getColorNavBtn().click();
 
+		// TODO Check if discount is granted.
+		// TODO Proceed to write assertions.
 		ColorPage color = new ColorPage();
 		wait1.until(ExpectedConditions.textToBePresentInElement(color.getPriceColor(), "0,00 €"));
 //		color.getLightblue().click();
@@ -117,7 +148,6 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 		color.getEffectSelect().click();
 		color.getPearlEffect().click();
 		ExtentManager.pass("Selected varnish effect Pearl Effect.");
-
 		color.getSummaryNavBtn().click();
 
 		SummaryPage summary = new SummaryPage();
