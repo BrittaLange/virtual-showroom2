@@ -83,7 +83,7 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 				"Not the expected price of engine: ");
 		ExtentManager.pass("Correct price for engine is displayed: " + engine.getEnginePriceLabel().getText());
 		engine.getPackageNavBtn().click();
-		
+
 		PackagePage pack = new PackagePage();
 		wait1.until(ExpectedConditions.textToBePresentInElement(pack.getPriceOfNone(), "0,00 €"));
 		js.executeScript("arguments[0].click()", pack.getSportPackageRadioBtn());
@@ -92,12 +92,13 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 		String expectedPackage = "Sport Package \"OutRun\"";
 		Assert.assertEquals(pack.getSportPackageRadioBtn().isSelected(), true, "Not the expected option selected: ");
 		ExtentManager.pass("Sport Package is selected: " + pack.getSportPackageRadioBtn().isSelected());
-		Assert.assertEquals(pack.getSportPackageLabel().getText().trim(), expectedPackage, "Not the expected package: ");
+		Assert.assertEquals(pack.getSportPackageLabel().getText().trim(), expectedPackage,
+				"Not the expected package: ");
 		ExtentManager.pass("The selected package is: " + pack.getSportPackageLabel().getText());
 		Assert.assertEquals(pack.getPriceOfSportPackage().getText(), expectedPackagePrice, "Not the expected price: ");
 		ExtentManager.pass("Correct price for sport package is displayed: " + pack.getPriceOfSportPackage().getText());
 		pack.getExtrasNavBtn().click();
-		
+
 		ExtrasPage extras = new ExtrasPage();
 		wait1.until(ExpectedConditions.textToBePresentInElement(extras.getPriceWinterTires(), "210,00 €"));
 		js.executeScript("arguments[0].click()", extras.getAutopilot());
@@ -105,68 +106,91 @@ public class SummaryOfConfigurationMyFirstCarTest extends Hooks {
 		js.executeScript("arguments[0].click()", extras.getNavigationsystem());
 		js.executeScript("arguments[0].click()", extras.getSoundsystem());
 		js.executeScript("arguments[0].click()", extras.getWintertires());
-		String expectedAutopilotPrice ="2.900,00 €";
-		String expectedFloormatsPrice ="46,00 €";
-		String expectedNavigationsystemPrice ="1.490,00 €";
-		String expectedSoundsystemPrice ="470,00 €";
-		String expectedWintertiresPrice ="210,00 €";
+		String expectedAutopilotPrice = "2.900,00 €";
+		String expectedFloormatsPrice = "46,00 €";
+		String expectedNavigationsystemPrice = "1.490,00 €";
+		String expectedSoundsystemPrice = "470,00 €";
+		String expectedWintertiresPrice = "210,00 €";
 		Assert.assertEquals(extras.getAutopilot().isSelected(), true, "Checkbox is not selected: ");
 		ExtentManager.pass("Checkbox is selected: " + extras.getAutopilotLabel().getText());
-		Assert.assertEquals(extras.getPriceAutopilot().getText().trim(), expectedAutopilotPrice, "Not the expected price: ");
+		Assert.assertEquals(extras.getPriceAutopilot().getText().trim(), expectedAutopilotPrice,
+				"Not the expected price: ");
 		ExtentManager.pass("Correct price is displayed: " + extras.getPriceAutopilot().getText());
-		
+
 		Assert.assertEquals(extras.getFloormats().isSelected(), true, "Checkbox is not selected: ");
 		ExtentManager.pass("Checkbox is selected: " + extras.getFloormatsLabel().getText());
-		Assert.assertEquals(extras.getPriceFloormats().getText().trim(), expectedFloormatsPrice, "Not the expected price: ");
+		Assert.assertEquals(extras.getPriceFloormats().getText().trim(), expectedFloormatsPrice,
+				"Not the expected price: ");
 		ExtentManager.pass("Correct price is displayed: " + extras.getPriceFloormats().getText());
-		
+
 		Assert.assertEquals(extras.getNavigationsystem().isSelected(), true, "Checkbox is not selected: ");
 		ExtentManager.pass("Checkbox is selected: " + extras.getNavigationsystemLabel().getText());
-		Assert.assertEquals(extras.getPriceNavigationsystem().getText().trim(), expectedNavigationsystemPrice, "Not the expected price: ");
+		Assert.assertEquals(extras.getPriceNavigationsystem().getText().trim(), expectedNavigationsystemPrice,
+				"Not the expected price: ");
 		ExtentManager.pass("Correct price is displayed: " + extras.getPriceNavigationsystem().getText());
-		
+
 		Assert.assertEquals(extras.getSoundsystem().isSelected(), true, "Checkbox is not selected: ");
 		ExtentManager.pass("Checkbox is selected: " + extras.getSoundsystemLabel().getText());
-		Assert.assertEquals(extras.getPriceSoundsystem().getText().trim(), expectedSoundsystemPrice, "Not the expected price: ");
+		Assert.assertEquals(extras.getPriceSoundsystem().getText().trim(), expectedSoundsystemPrice,
+				"Not the expected price: ");
 		ExtentManager.pass("Correct price is displayed: " + extras.getPriceSoundsystem().getText());
-		
+
 		Assert.assertEquals(extras.getWintertires().isSelected(), true, "Checkbox is not selected: ");
 		ExtentManager.pass("Checkbox is selected: " + extras.getWintertiresLabel().getText());
-		Assert.assertEquals(extras.getPriceWinterTires().getText().trim(), expectedWintertiresPrice, "Not the expected price: ");
+		Assert.assertEquals(extras.getPriceWinterTires().getText().trim(), expectedWintertiresPrice,
+				"Not the expected price: ");
 		ExtentManager.pass("Correct price is displayed: " + extras.getPriceWinterTires().getText());
 		ExtentManager.pass(
 				"Selected all possible extras via the checkboxes: Autopilot Don'tCare, Floor mats, Navigation System, Sound System OverDrive and Winter tires");
+
+		String expectedDiscountPercentage = "15 %";
+		String expectedDiscountAmount = "767,40 €";
+		Assert.assertEquals(extras.getDiscountPercentage().getText().trim(), expectedDiscountPercentage,
+				"Not the expected percentage: ");
+		ExtentManager.pass("Correct percentage of discount is displayed: " + extras.getDiscountPercentage().getText());
+		Assert.assertEquals(extras.getDiscountAmount().getText().trim(), expectedDiscountAmount,
+				"Not the expected amount: ");
+		ExtentManager.pass("Correct amount of discount is displayed: " + extras.getDiscountAmount().getText());
 		extras.getColorNavBtn().click();
 
-		// TODO Check if discount is granted.
-		// TODO Proceed to write assertions.
 		ColorPage color = new ColorPage();
 		wait1.until(ExpectedConditions.textToBePresentInElement(color.getPriceColor(), "0,00 €"));
 //		color.getLightblue().click();
 		js.executeScript("arguments[0].click()", color.getLightblue());
-		ExtentManager.pass("Selected color light blue.");
+		String expectedColorPrice ="0,00 €";
+		Assert.assertTrue(color.getLightblue().isSelected(), "Not the expected color: ");
+		ExtentManager.pass("Selected color is: " + color.getLabelLightBlue().getText());
+		Assert.assertEquals(color.getPriceColor().getText().trim(), expectedColorPrice, "Not the expected price: ");
+		ExtentManager.pass("Correct price is displayed: " + color.getPriceColor().getText());
+		
 		color.getEffectSelect().click();
 		color.getPearlEffect().click();
-		ExtentManager.pass("Selected varnish effect Pearl Effect.");
+		wait1.until(ExpectedConditions.visibilityOf(color.getSelectedEffect()));
+		String expectedEffect ="Pearl effect (1.999,00 €)";
+		Assert.assertEquals(color.getSelectedEffect().getText().trim(), expectedEffect);
+		ExtentManager.pass("Selected varnish effect is: " + color.getSelectedEffect().getText());
 		color.getSummaryNavBtn().click();
 
 		SummaryPage summary = new SummaryPage();
-		wait1.until(ExpectedConditions.textToBePresentInElement(summary.getTotalAmount(), "39.345,59 €"));
+		String expectedTotalAmount = "39.345,59 €";
+		wait1.until(ExpectedConditions.textToBePresentInElement(summary.getTotalAmount(), expectedTotalAmount));
+		Assert.assertEquals(summary.getTotalAmount().getText().trim(), expectedTotalAmount, "Not the expected total amount: ");
+		ExtentManager.pass("Correct total amount: " + summary.getTotalAmount().getText());
+		
 		summary.getConfigname().clear();
 		summary.getConfigname().sendKeys("MyFirstCar");
 		wait1.until(ExpectedConditions.visibilityOf(summary.getImageOfCar()));
 		summary.getSaveBtn().click();
 		ExtentManager.pass("Saved car configuration with name MyFirstCar.");
-
-		// Konfiguration wieder löschen.
+		
+		// Konfiguration wieder löschen. Zum Debuggen,
 		summary.getListNavBtn().click();
 		wait1.until(ExpectedConditions.elementToBeClickable(dreamcar.getNewCarBtn()));
 		List<WebElement> cars = dreamcar.getsavedCars();
 		for (int i = 0; i < cars.size(); i++) {
 			if (cars.get(i).getText().equals("MyFirstCar")) {
-				// delete WebElement mit id=button_delete_i
+				// Lösche WebElement mit id=button_delete_i
 				dreamcar.deleteMyfirstcar(i).click();
-
 			}
 		}
 	}
