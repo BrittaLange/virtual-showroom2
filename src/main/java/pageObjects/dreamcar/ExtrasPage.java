@@ -32,6 +32,9 @@ public class ExtrasPage extends NavigationTabs {
 	private By wintertires = By.id("checkbox_extra_1-input");
 	private By wintertiresLabel = By.cssSelector("[for='checkbox_extra_1-input'] .mat-checkbox-label");
 	private By priceWinterTires = By.id("extra_price_1");
+	private By discountPercentage = By.id("label_discount");
+	private By discountAmount = By.cssSelector("ul#included_extras > label:nth-of-type(2)");
+	private By totalAmount = By.id("label_price_sum");
 
 	public ExtrasPage() throws IOException {
 		super();
@@ -132,6 +135,17 @@ public class ExtrasPage extends NavigationTabs {
 	public WebElement getPriceWinterTires() {
 		return driver.findElement(priceWinterTires);
 	}
-
+	
+	public WebElement getDiscountPercentage() {
+		return driver.findElement(discountPercentage);
+	}
+	
+	public WebElement getDiscountAmount() {
+		return driver.findElement(discountAmount);
+	}
+	
+	public WebElement getTotalAmount() {
+		return driver.findElement(totalAmount);
+	}
 
 }
